@@ -1,0 +1,44 @@
+{
+  "name": "nextjs_template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.87.1",
+    "@tanstack/react-query-devtools": "^5.87.1",
+    "axios": "^1.11.0",
+    "dotenv": "^17.2.2",
+    "formik": "^2.4.6",
+    "next": "15.5.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hot-toast": "^2.6.0",
+    "react-paginate": "^8.3.0",
+    "react-spinners": "^0.17.0",
+    "use-debounce": "^10.0.5",
+    "yup": "^1.7.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "15.5.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5"
+  }
+}
