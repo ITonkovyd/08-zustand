@@ -5,6 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useDebounce } from "use-debounce";
 import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
@@ -20,7 +21,6 @@ interface NoteClientProps {
 const NotesClient = ({ tag }: NoteClientProps) => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
 
   const { data, isSuccess, isError } = useQuery({
@@ -28,10 +28,6 @@ const NotesClient = ({ tag }: NoteClientProps) => {
     queryFn: () => fetchNotes(page, debouncedQuery, tag),
     placeholderData: keepPreviousData,
   });
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
 
   useEffect(() => {
     if (!isError && data?.notes.length === 0) {
@@ -55,16 +51,11 @@ const NotesClient = ({ tag }: NoteClientProps) => {
             onPageChange={(newPage) => setPage(newPage)}
           />
         )}
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
       <main>{isSuccess && <NoteList notes={data.notes} />}</main>
-      {isModalOpen && (
-        <Modal onClose={handleModalClose}>
-          <NoteForm onClose={handleModalClose} />
-        </Modal>
-      )}
       <Toaster />
     </div>
   );
