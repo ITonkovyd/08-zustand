@@ -19,6 +19,7 @@ export default function Home() {
           width={1000}
           height={650}
           placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgMBAp6kAAAAAElFTkSuQmCC"
         />
         <p className={css.description}>
           NoteHub is a simple and efficient application designed for managing
