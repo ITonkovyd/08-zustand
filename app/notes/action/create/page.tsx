@@ -1,12 +1,14 @@
-import NoteForm from '@/components/NoteForm/NoteForm'
-import css from './page.module.css'
+import type { Metadata } from "next";
+import NoteForm from "@/components/NoteForm/NoteForm";
+import css from "./page.module.css";
 
-export const metadata = {
-  title: 'Create Note',
-  description: 'Create a new note',
-  opensGraph: {
-    title: 'Create Note',
-    description: 'Create a new note',
+export const metadata: Metadata = {
+  title: "Create Note",
+  description: "Create a new note",
+  openGraph: {
+    title: "Create Note",
+    description: "Create a new note",
+    url: "https://notehub.com/notes/action/create",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -16,7 +18,7 @@ export const metadata = {
       },
     ],
   },
-}
+};
 
 const CreateNote = async () => {
   return (
@@ -26,7 +28,7 @@ const CreateNote = async () => {
         <NoteForm />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default CreateNote
+export default CreateNote;
