@@ -3,9 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useNoteMutation } from "@/hooks/useNoteMutation";
 import { createNote } from "@/lib/api";
-import { useNoteDraftStore } from "@/lib/stores/noteStore";
+import { useNoteDraftStore } from "@/lib/store/noteStore";
 import { BaseNoteParams, noteTag } from "@/types/note";
 import css from "./NoteForm.module.css";
+
 
 const TAGS: noteTag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
