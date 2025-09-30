@@ -1,13 +1,10 @@
 "use client";
 
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { toast, Toaster } from "react-hot-toast";
 import { useDebounce } from "use-debounce";
 import React, { useCallback } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -23,17 +20,11 @@ const NotesClient = ({ tag }: NoteClientProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
 
-  const { data, isSuccess, isError } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ["notes", page, debouncedQuery, tag],
     queryFn: () => fetchNotes(page, debouncedQuery, tag),
     placeholderData: keepPreviousData,
   });
-
-  useEffect(() => {
-    if (!isError && data?.notes.length === 0) {
-      toast.error("No notes found");
-    }
-  }, [isError, data]);
 
   const handleSearchChange = useCallback((query: string) => {
     setSearchQuery(query);
@@ -55,8 +46,9 @@ const NotesClient = ({ tag }: NoteClientProps) => {
           Create note +
         </Link>
       </header>
-      <main>{isSuccess && <NoteList notes={data.notes} />}</main>
-      <Toaster />
+      <main>
+        {isSuccess && data.notes.length > 0 && <NoteList notes={data.notes} />}
+      </main>
     </div>
   );
 };

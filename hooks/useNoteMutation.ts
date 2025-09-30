@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
 import { Note } from "@/types/note";
 
 interface UseNoteMutationOptions<T> {
@@ -13,7 +12,6 @@ interface UseNoteMutationOptions<T> {
 export function useNoteMutation<T>({
   mutationFn,
   queryKey,
-  successMsg,
   errorMsg,
   successAction,
 }: UseNoteMutationOptions<T>) {
@@ -23,11 +21,10 @@ export function useNoteMutation<T>({
     mutationFn,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
-      if (successMsg) toast.success(successMsg);
       if (successAction) successAction();
     },
     onError: () => {
-      if (errorMsg) toast.error(errorMsg);
+      console.error(errorMsg);
     },
   });
 }
